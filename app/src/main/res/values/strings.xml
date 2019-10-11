@@ -6,4 +6,5 @@
     <string name="five_days_forecast">Next 5 Days Forecast</string>
     <string name="tomorrow_forecast">Tomorrow</string>
     <string name="today_forecast">Today</string>
+    <string name="todo">TODO</string>
 </resources>

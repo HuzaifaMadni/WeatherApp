@@ -84,7 +84,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@mipmap/ic_launcher"
         android:foregroundGravity="fill"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/todo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
