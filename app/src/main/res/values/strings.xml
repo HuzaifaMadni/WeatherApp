@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MyWeatherApp</string>
+
+    <string name="city_name">City Name</string>
+    <string name="temp">34 C</string>
+    <string name="five_days_forecast">Next 5 Days Forecast</string>
+    <string name="tomorrow_forecast">Tomorrow</string>
+    <string name="today_forecast">Today</string>
+</resources>
