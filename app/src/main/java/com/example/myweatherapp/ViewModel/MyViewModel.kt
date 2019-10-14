@@ -52,7 +52,7 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
                 weatherData = response!!.body()
                 Log.d("Response", weatherData.sys?.country)
                 data.postValue(weatherData)
-
+                call?.cancel()
             }
 
         })
