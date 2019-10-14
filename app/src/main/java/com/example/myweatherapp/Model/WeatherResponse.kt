@@ -1,4 +1,4 @@
-package com.example.myweatherapp
+package com.example.myweatherapp.Model
 
 import com.google.gson.annotations.SerializedName
 import java.util.ArrayList
@@ -27,6 +27,10 @@ class WeatherResponse {
     var name: String? = null
     @SerializedName("cod")
     var cod: Float = 0.toFloat()
+
+    get() = field
+
+
 }
 
 class Weather {
@@ -38,6 +42,8 @@ class Weather {
     var description: String? = null
     @SerializedName("icon")
     var icon: String? = null
+
+
 }
 
 class Clouds {
@@ -85,3 +91,4 @@ class Coord {
     @SerializedName("lat")
     var lat: Float = 0.toFloat()
 }
+
