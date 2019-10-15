@@ -8,20 +8,22 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.myweatherapp.R
 import com.example.myweatherapp.Utils.*
-import com.example.myweatherapp.ViewModel.MyViewModel
+import com.example.myweatherapp.viewmodel.MyViewModel
+import com.example.myweatherapp.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.DateFormat
 import kotlin.math.roundToLong
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel by lazy {(ViewModelProviders.of(this@MainActivity).get(MyViewModel::class.java))}
+    private val viewModel by lazy {(ViewModelProviders.of(this).get(MyViewModel::class.java))}
 
     private lateinit var sharedPreference : SharedPreferences
     private lateinit var editor : SharedPreferences.Editor
@@ -38,7 +40,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
+
+        val binding : ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        binding.viewmodel = viewModel
+        binding.lifecycleOwner = this
 
         viewModel.getWeatherData().removeObservers(this)
 

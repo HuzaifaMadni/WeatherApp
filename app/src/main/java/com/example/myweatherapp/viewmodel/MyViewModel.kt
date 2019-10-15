@@ -1,4 +1,4 @@
-package com.example.myweatherapp.ViewModel
+package com.example.myweatherapp.viewmodel
 
 import android.app.Application
 import android.util.Log
@@ -53,20 +53,6 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
 
         })
 
-        /*val call = service.getCurrentWeatherData(lat, lon, AppId).enqueue(object :
-            Callback<MutableLiveData<WeatherResponse>>{
-            override fun onFailure(call: retrofit2.Call<MutableLiveData<WeatherResponse>>?, t: Throwable?) {
-                Log.d("Error", t.toString())
-            }
-
-            override fun onResponse(call: retrofit2.Call<MutableLiveData<WeatherResponse>>?, response: retrofit2.Response<MutableLiveData<WeatherResponse>>?) {
-                if (response?.isSuccessful!!){
-                    weatherData = response.body()
-                    Log.d("Response", weatherData.value?.sys?.country)
-                }
-            }
-
-        })*/
     }
 }
 
