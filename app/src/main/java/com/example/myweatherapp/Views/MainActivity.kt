@@ -2,35 +2,21 @@ package com.example.myweatherapp.Views
 
 import android.content.SharedPreferences
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.SystemClock
 import android.preference.PreferenceManager
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.MutableLiveData
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.myweatherapp.Model.WeatherResponse
-import com.example.myweatherapp.Model.WeatherService
 import com.example.myweatherapp.R
 import com.example.myweatherapp.Utils.*
 import com.example.myweatherapp.ViewModel.MyViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import okhttp3.Call
-import okhttp3.Response
-import retrofit2.Callback
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.io.IOException
 import java.text.DateFormat
-import kotlin.math.abs
-import kotlin.math.max
 import kotlin.math.roundToLong
 
 class MainActivity : AppCompatActivity() {

@@ -2,20 +2,16 @@ package com.example.myweatherapp.ViewModel
 
 import android.app.Application
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.myweatherapp.Model.Weather
 import com.example.myweatherapp.Model.WeatherResponse
 import com.example.myweatherapp.Model.WeatherService
-import okhttp3.Call
-import okhttp3.Response
+import com.example.myweatherapp.Utils.AppId
+import com.example.myweatherapp.Utils.RetrofitClient
+import com.example.myweatherapp.Utils.lat
+import com.example.myweatherapp.Utils.lon
 import retrofit2.Callback
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.io.IOException
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import com.example.myweatherapp.Utils.*
 
 
 class MyViewModel(application: Application) : AndroidViewModel(application) {

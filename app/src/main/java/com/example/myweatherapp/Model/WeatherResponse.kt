@@ -1,7 +1,7 @@
 package com.example.myweatherapp.Model
 
 import com.google.gson.annotations.SerializedName
-import java.util.ArrayList
+import java.util.*
 
 class WeatherResponse {
 
