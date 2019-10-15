@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                 temperature.text = temp
                 temperature.append("\u2103" )
 
-                icon = viewModel.getWeatherData().value?.weather?.get(0)?.icon.toString()
+                icon = viewModel.getWeatherData().value?.weather?.get(viewModel.getWeatherData().value?.weather?.size!!-1)?.icon.toString()
 
                 Glide.with(this).load("http://openweathermap.org/img/w/" + icon + ".png")
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
