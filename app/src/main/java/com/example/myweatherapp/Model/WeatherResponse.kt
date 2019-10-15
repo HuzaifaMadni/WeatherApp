@@ -1,9 +1,11 @@
 package com.example.myweatherapp.Model
 
+import androidx.databinding.BaseObservable
+import androidx.databinding.ObservableField
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
-class WeatherResponse {
+class WeatherResponse : BaseObservable() {
 
     @SerializedName("coord")
     var coord: Coord? = null
@@ -33,7 +35,7 @@ class WeatherResponse {
 
 }
 
-class Weather {
+class Weather : BaseObservable(){
     @SerializedName("id")
     var id: Int = 0
     @SerializedName("main")
@@ -46,24 +48,24 @@ class Weather {
 
 }
 
-class Clouds {
+class Clouds : BaseObservable(){
     @SerializedName("all")
     var all: Float = 0.toFloat()
 }
 
-class Rain {
+class Rain : BaseObservable(){
     @SerializedName("3h")
     var h3: Float = 0.toFloat()
 }
 
-class Wind {
+class Wind : BaseObservable (){
     @SerializedName("speed")
     var speed: Float = 0.toFloat()
     @SerializedName("deg")
     var deg: Float = 0.toFloat()
 }
 
-class Main {
+class Main : BaseObservable(){
     @SerializedName("temp")
     var temp: Float = 0.toFloat()
     @SerializedName("humidity")
@@ -76,7 +78,7 @@ class Main {
     var temp_max: Float = 0.toFloat()
 }
 
-class Sys {
+class Sys : BaseObservable(){
     @SerializedName("country")
     var country: String? = null
     @SerializedName("sunrise")
@@ -85,7 +87,7 @@ class Sys {
     var sunset: Long = 0
 }
 
-class Coord {
+class Coord : BaseObservable(){
     @SerializedName("lon")
     var lon: Float = 0.toFloat()
     @SerializedName("lat")
