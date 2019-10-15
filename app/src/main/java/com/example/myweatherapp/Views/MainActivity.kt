@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -40,7 +41,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
 
         val binding : ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.getWeatherData().removeObservers(this)
 
         sharedPreference = PreferenceManager.getDefaultSharedPreferences(this)
-        editor = sharedPreference.edit()
 
         setSupportActionBar(toolbar)
 
@@ -137,11 +136,12 @@ class MainActivity : AppCompatActivity() {
 
                 fetchtime = DateFormat.getTimeInstance(DateFormat.SHORT).format(System.currentTimeMillis())
 
+                editor = sharedPreference.edit()
+
                 lastUpdated.text = UPDATE + fetchtime
 
                 editor.putString(CITY_NAME, city)
                 editor.putString(TEMP, temp)
-
                 editor.putString(ICON, icon)
                 editor.putString(DESC, desc)
                 editor.putString(MIN_TEMP, minTemp)
@@ -153,6 +153,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.getWeatherData().removeObservers(this)
+
+        Toast.makeText(this, "Refreshed", Toast.LENGTH_SHORT).show()
 
         return super.onOptionsItemSelected(item)
     }
