@@ -1,20 +1,19 @@
 package com.example.myweatherapp.viewmodel
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.myweatherapp.Model.WeatherResponse
-import com.example.myweatherapp.Model.WeatherService
-import com.example.myweatherapp.Utils.AppId
-import com.example.myweatherapp.Utils.RetrofitClient
-import com.example.myweatherapp.Utils.lat
-import com.example.myweatherapp.Utils.lon
+import androidx.lifecycle.ViewModel
+import com.example.myweatherapp.model.WeatherResponse
+import com.example.myweatherapp.model.WeatherService
+import com.example.myweatherapp.utils.AppId
+import com.example.myweatherapp.utils.RetrofitClient
+import com.example.myweatherapp.utils.lat
+import com.example.myweatherapp.utils.lon
 import retrofit2.Callback
 import retrofit2.Retrofit
 
 
-class MyViewModel(application: Application) : AndroidViewModel(application) {
+class MyViewModel : ViewModel() {
 
     private lateinit var weatherData: WeatherResponse
 
@@ -47,7 +46,7 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
             override fun onResponse(call: retrofit2.Call<WeatherResponse>?, response: retrofit2.Response<WeatherResponse>?) {
                 weatherData = response!!.body()
                 Log.d("Response", weatherData.sys?.country)
-                data.postValue(weatherData)
+                data.value = (weatherData)
                 call?.cancel()
             }
 

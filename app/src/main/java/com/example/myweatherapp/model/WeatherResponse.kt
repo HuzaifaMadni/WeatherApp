@@ -1,37 +1,101 @@
-package com.example.myweatherapp.Model
+package com.example.myweatherapp.model
 
 import androidx.databinding.BaseObservable
-import androidx.databinding.ObservableField
+import androidx.databinding.Bindable
+import com.example.myweatherapp.BR
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
+
 class WeatherResponse : BaseObservable() {
 
+    @get:Bindable
     @SerializedName("coord")
     var coord: Coord? = null
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.viewmodel)
+    }
+
+    @get:Bindable
     @SerializedName("sys")
     var sys: Sys? = null
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.viewmodel)
+        }
+
+    @get:Bindable
     @SerializedName("weather")
     var weather = ArrayList<Weather>()
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.viewmodel)
+        }
+
+    @get:Bindable
     @SerializedName("main")
     var main: Main? = null
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.viewmodel)
+        }
+
+    @get:Bindable
     @SerializedName("wind")
     var wind: Wind? = null
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.viewmodel)
+        }
+
+    @get:Bindable
     @SerializedName("rain")
     var rain: Rain? = null
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.viewmodel)
+        }
+
+    @get:Bindable
     @SerializedName("clouds")
     var clouds: Clouds? = null
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.viewmodel)
+        }
+
+    @get:Bindable
     @SerializedName("dt")
     var dt: Float = 0.toFloat()
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.viewmodel)
+        }
+
+    @get:Bindable
     @SerializedName("id")
     var id: Int = 0
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.viewmodel)
+        }
+
+    @get:Bindable
     @SerializedName("name")
     var name: String? = null
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.viewmodel)
+        }
+
+    @get:Bindable
     @SerializedName("cod")
     var cod: Float = 0.toFloat()
-
-    get() = field
-
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.viewmodel)
+        }
 
 }
 
@@ -93,4 +157,5 @@ class Coord : BaseObservable(){
     @SerializedName("lat")
     var lat: Float = 0.toFloat()
 }
+
 

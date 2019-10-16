@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="java.text.DateFormat"/>
         <variable
             name="viewmodel"
             type="com.example.myweatherapp.viewmodel.MyViewModel" />
@@ -13,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#EBEBEB"
-        tools:context=".Views.MainActivity">
+        tools:context=".views.MainActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -48,7 +49,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="@{viewmodel.weatherData.name}"
+            android:text="@{viewmodel.weatherData.name, default=`City Name`}"
             android:textColor="#000000"
             android:fontFamily="@font/sfuidisplaregular"
             android:textSize="24sp" />
@@ -62,7 +63,7 @@
             app:layout_constraintTop_toBottomOf="@id/cityName"
             app:layout_constraintStart_toEndOf="@id/weatherIcon"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="@{String.valueOf(viewmodel.weatherData.main.temp)}"
+            app:Temp="@{viewmodel}"
             android:fontFamily="@font/sfuidisplaregular"
             android:gravity="center_vertical"
             android:textSize="44sp"
@@ -75,6 +76,7 @@
             android:layout_marginTop="10dp"
             android:src="@mipmap/ic_launcher"
             android:foregroundGravity="center_vertical"
+            app:weatherIcon="@{viewmodel}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/temperature"
             app:layout_constraintTop_toBottomOf="@id/cityName" />
@@ -87,7 +89,7 @@
             android:layout_marginTop="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="Sunny"
+            app:array="@{viewmodel}"
             android:gravity="center"
             android:textStyle="bold"
             android:fontFamily="@font/desc"
@@ -159,7 +161,7 @@
                     app:layout_constraintEnd_toStartOf="@id/maxTempValue"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:text="@{String.valueOf(viewmodel.weatherData.main.temp_min)}" />
+                    app:minTemp="@{viewmodel}"/>
 
                 <TextView
                     android:id="@+id/maxTempValue"
@@ -172,7 +174,7 @@
                     app:layout_constraintEnd_toStartOf="@id/pressureValue"
                     app:layout_constraintStart_toEndOf="@id/minTempValue"
                     android:gravity="center"
-                    android:text="@{String.valueOf(viewmodel.weatherData.main.temp_max)}" />
+                    app:maxTemp="@{viewmodel}"/>
 
                 <TextView
                     android:id="@+id/pressureValue"
@@ -215,7 +217,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:text=" Updated @ "
             android:gravity="right"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="10dp"
