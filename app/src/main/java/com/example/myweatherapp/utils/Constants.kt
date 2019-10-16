@@ -15,3 +15,5 @@ const val PRESSURE : String = "Pressure"
 const val LAST_UPDATED : String = "LastUpdated"
 
 const val UPDATE : String = "Updated @ "
+
+const val APOD_API_KEY : String = "E7mZeETUck5P5dmHWkZYlcKNUvef2hpAB07Uwya1"
