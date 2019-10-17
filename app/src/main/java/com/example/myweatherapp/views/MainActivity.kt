@@ -1,5 +1,6 @@
 package com.example.myweatherapp.views
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
@@ -42,6 +43,8 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
+        toolbar.inflateMenu(R.menu.menu)
+
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         toolbar.setNavigationOnClickListener {
             finish()
@@ -77,6 +80,11 @@ class MainActivity : AppCompatActivity() {
                 bindTime(lastUpdated, "Updated @ ")
 
             })
+        }
+
+        if (id == R.id.cities){
+            intent = Intent(this, CityDataActivity::class.java)
+            startActivity(intent)
         }
 
         viewModel.getWeatherData().removeObservers(this)

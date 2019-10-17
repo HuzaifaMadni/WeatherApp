@@ -9,15 +9,23 @@ import com.example.myweatherapp.utils.AppId
 import com.example.myweatherapp.utils.RetrofitClient
 import com.example.myweatherapp.utils.lat
 import com.example.myweatherapp.utils.lon
+import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 
 
 class MyViewModel : ViewModel() {
 
     private lateinit var weatherData: WeatherResponse
+    private lateinit var CityweatherData: WeatherResponse
 
     private val data = MutableLiveData<WeatherResponse>()
+    private val Citydata = MutableLiveData<WeatherResponse>()
+
+    fun getCityData() : MutableLiveData<WeatherResponse>{
+        return Citydata
+    }
 
     fun getWeatherData(): MutableLiveData<WeatherResponse> {
 
@@ -32,18 +40,19 @@ class MyViewModel : ViewModel() {
 
         val service = newRetrofit?.create(WeatherService::class.java)
 
-        val call : retrofit2.Call<WeatherResponse> = service!!.getCurrentWeatherData(lat, lon, AppId)
+        val call : Call<WeatherResponse> = service!!.getCurrentWeatherData(lat, lon, AppId)
 
         if (call.isExecuted){
             call.cancel()
         }
 
         call.enqueue(object : Callback<WeatherResponse>{
-            override fun onFailure(call: retrofit2.Call<WeatherResponse>?, t: Throwable?) {
+            override fun onFailure(call: Call<WeatherResponse>?, t: Throwable?) {
                 Log.d("Error", t.toString())
+                call?.cancel()
             }
 
-            override fun onResponse(call: retrofit2.Call<WeatherResponse>?, response: retrofit2.Response<WeatherResponse>?) {
+            override fun onResponse(call: Call<WeatherResponse>?, response: Response<WeatherResponse>?) {
                 weatherData = response!!.body()
                 Log.d("Response", weatherData.sys?.country)
                 data.value = (weatherData)
@@ -52,6 +61,35 @@ class MyViewModel : ViewModel() {
 
         })
 
+    }
+
+    fun loadCityWeather(string: String) : MutableLiveData<WeatherResponse>{
+
+        val retrofit : Retrofit? = RetrofitClient().getRetrofitClient()
+
+        val service = retrofit?.create(WeatherService::class.java)
+
+        val call : Call<WeatherResponse> = service!!.getCityWeatherData(string, AppId)
+
+        if (call.isExecuted){
+            call.cancel()
+        }
+
+        call.enqueue(object : Callback<WeatherResponse>{
+            override fun onFailure(call: Call<WeatherResponse>?, t: Throwable?) {
+                Log.d("Error", t.toString())
+                call?.cancel()
+            }
+
+            override fun onResponse(call: Call<WeatherResponse>?, response: Response<WeatherResponse>?) {
+                CityweatherData = response!!.body()
+                Log.d("Response", CityweatherData.sys?.country)
+                Citydata.value = (CityweatherData)
+                call?.cancel()
+            }
+        })
+
+        return Citydata
     }
 }
 
